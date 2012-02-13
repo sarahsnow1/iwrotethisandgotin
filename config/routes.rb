@@ -1,5 +1,7 @@
 Iwrotethisandgotin::Application.routes.draw do
 
+  resources :users, :controller => 'user'
+
   match '/signup',   to: 'users#new'
 
   match '/login',    to: 'sessions#login'

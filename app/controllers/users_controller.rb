@@ -5,6 +5,11 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.create
+    @user = User.new
+  end
+
+  def create 
+    @user = User.new(params[:user])
+    @user.save
   end
 end
