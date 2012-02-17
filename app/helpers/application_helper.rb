@@ -10,4 +10,8 @@ module ApplicationHelper
     end
   end
 
+  def logo
+    image_tag("logo.png", alt: "I wrote this and got in", class: "round")
+  end
+
 end

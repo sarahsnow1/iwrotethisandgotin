@@ -1,11 +1,11 @@
 Iwrotethisandgotin::Application.routes.draw do
-
+  resources :sessions, only: [:new, :create, :destroy]
   resources :users
 
   match '/signup',   to: 'users#new'
 
-  match '/login',    to: 'sessions#login'
-  match '/logout',   to: 'sessions#logout'
+  match '/signin',    to: 'sessions#new'
+  match '/signout',   to: 'sessions#destroy'
 
   root to: 'sessions#login'
 
