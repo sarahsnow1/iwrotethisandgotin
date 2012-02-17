@@ -11,7 +11,7 @@ module ApplicationHelper
   end
 
   def logo
-    image_tag("logo.png", alt: "I wrote this and got in", class: "round")
+    image_tag("logo.jpg", alt: "I wrote this and got in", class: "round", size: "170x110" )
   end
 
 end
