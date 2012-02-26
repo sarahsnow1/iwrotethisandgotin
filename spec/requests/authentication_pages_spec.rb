@@ -35,6 +35,8 @@ describe "AuthenticationPages" do
       end
 
       it { should have_selector('title', text: user.name) }
+
+      it { should have_link('Users', href: users_path) }
       it { should have_link('Profile', href: user_path(user)) }
       it { should have_link('Settings', href: edit_user_path(user)) }
       it { should have_link('Sign out', href: signout_path) }
@@ -60,7 +62,7 @@ describe "AuthenticationPages" do
 			  end
 		  end
 
-		  describe "when attempting to visit a protected page" do
+		describe "when attempting to visit a protected page" do
 			  before do
 				  visit edit_user_path(user)
 				  fill_in "Email", 	with: user.email
@@ -74,8 +76,12 @@ describe "AuthenticationPages" do
 					  page.should have_selector('title', text: 'Edit user')
 				  end
 			  end
-		  end
-			
+		end
+		
+		describe "visiting user index" do
+      			before { visit users_path }
+			it { should have_selector('title', text: 'Sign in') }
+		end			
 	  end
 
 	  describe "as wrong user" do

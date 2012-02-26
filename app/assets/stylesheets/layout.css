@@ -110,4 +110,14 @@ footer nav {
   float: none;
 }
 
+/* Users */
+ul.users {
+	margin-top: 1em;
+}
 
+.users li {
+	list-style: none;
+} 
+
+.users a {
+	color: #989898;
