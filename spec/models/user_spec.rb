@@ -32,6 +32,29 @@ describe User do
   it { should be_valid }
   it { should_not be_admin }
 
+  describe "essay associations" do
+
+	  before { @user.save }
+	  let!(:older_essay) do
+		  FactoryGirl.create(:essay, user: @user, created_at: 1.day.ago)
+	  end
+	  let!(:newer_essay) do
+		  FactoryGirl.create(:essay, user: @user, created_at: 1.hour.ago)
+	  end
+
+	  it "should have the right essays in the right order" do
+		  @user.essays.should == [newer_essay, older_essay]
+	  end
+
+	  it "should destroy associated essays" do
+		  essays = @user.essays
+		  @user.destroy
+		  essays.each do |essay|
+			  Essay.find_by_id(essay.id).should be_nil
+		  end
+	  end
+  end
+
   describe "with admin attribut set to 'true'" do
 	  before { @user.toggle!(:admin) }
 

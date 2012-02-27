@@ -8,4 +8,10 @@ FactoryGirl.define do
 	    admin true
     end
   end
+
+  factory :essay do
+	  content "A fake essay with content"
+	  title "Inspiration"
+	  user
+  end
 end
