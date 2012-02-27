@@ -62,6 +62,22 @@ describe "AuthenticationPages" do
 			  end
 		  end
 
+		  describe "in the Essays controller" do
+
+			  describe "submitting to the create action" do
+				  before { post essays_path }
+				  specify { response.should redirect_to(signin_path) }
+			  end
+
+			  describe "submitting to the destroy action" do
+				  before do
+					  essay = FactoryGirl.create(:essay)
+					  delete essay_path(essay)
+				  end
+				  specify { response.should redirect_to(signin_path) }
+			  end
+		  end
+
 		describe "when attempting to visit a protected page" do
 			  before do
 				  visit edit_user_path(user)

@@ -1,4 +1,18 @@
 <% provide(:title, 'Home') %>
-<h1>Home</h1>
-<p>this will be landing page for the site</p>
-<%= link_to "Sign up now!", 'signup', class: "signup_button round" %>
+<% if signed_in? %>
+	<table class="front">
+		<tr>
+			<td class="main">
+				<h1 class="essay">What did you write?</h1>
+			       	<%= render 'shared/essay_form' %>
+			</td>
+			<td class="sidebar round">
+				<%= render 'shared/user_info' %>
+			</td>
+		</tr>
+	</table>
+<% else %>	
+	<h1>Home</h1>
+	<p>this will be landing page for the site</p>
+	<%= link_to "Sign up now!", 'signup', class: "signup_button round" %>
+<% end %>
