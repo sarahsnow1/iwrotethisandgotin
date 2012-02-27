@@ -4,6 +4,23 @@ describe "UserPages" do
 
    subject { page }
 
+   	describe "profile page" do
+		let(:user) { FactoryGirl.create(:user) }
+		let!(:e1) { FactoryGirl.create(:essay, user: user, content: "The essay", title: "Inspirational" ) }
+		let!(:e2) { FactoryGirl.create(:essay, user: user, content: "Another essay", title: "Very cool") }
+
+		before { visit user_path(user) }
+
+		it { should have_selector('h1', text: user.name) }
+		it { should have_selector('title', text: user.name) }
+
+		describe "essays" do
+			it { should have_content(e1.content) }
+			it { should have_content(e2.content) }
+			it { should have_content(user.essays.count) }
+		end
+	end
+
   	describe "index" do
 		
 		let(:user) { FactoryGirl.create(:user) }

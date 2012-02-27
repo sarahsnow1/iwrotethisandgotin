@@ -16,6 +16,12 @@ namespace :db do
 		   password: password,
 		   password_confirmation: password)
     end
+
+  	users = User.all(limit: 6)
+  	1.times do
+	  	content = Faker::Lorem.sentence(490)
+	  	users.each { |user| user.essays.create!(content: content, title: "My essay") }
+  	end
   end
 end
 
