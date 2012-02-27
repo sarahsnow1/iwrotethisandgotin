@@ -18,4 +18,14 @@ describe Essay do
 		before { @essay.user_id = nil }
 		it { should_not be_valid }
 	end
+
+	describe "with blank content" do
+		before { @essay.content = " " }
+		it { should_not be_valid }
+	end
+
+	describe "with content that is too long" do
+		before { @essay.content = "a " * 501 }
+		it { should_not be_valid }
+	end
 end
