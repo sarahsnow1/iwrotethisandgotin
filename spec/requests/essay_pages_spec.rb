@@ -38,8 +38,8 @@ describe "EssayPages" do
 		describe "as corret user" do
 			before { visit root_path }
 
-			it "should delete a micropost" do
-				expect { click_link "delete" }.should change(Micropost, :count).by(-1)
+			it "should delete an essay" do
+				expect { click_link "delete" }.should change(Essay, :count).by(-1)
 			end
 		end
 	end
