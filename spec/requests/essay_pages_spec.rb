@@ -31,4 +31,16 @@ describe "EssayPages" do
 			end
 		end
 	end
+
+	describe "essay destruction" do
+		before { FactoryGirl.create(:essay, user: user) }
+
+		describe "as corret user" do
+			before { visit root_path }
+
+			it "should delete a micropost" do
+				expect { click_link "delete" }.should change(Micropost, :count).by(-1)
+			end
+		end
+	end
 end

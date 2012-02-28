@@ -5,4 +5,9 @@
 			Posted <%= time_ago_in_words(essay.created_at) %> ago.
 		</span>
 	</td>
+	<% if current_user?(essay.user) %>
+		<td>
+			<%= link_to "delete", essay, method: :delete, confirm: "Are you sure you want to delete this?", title: essay.title %>
+		</td>
+	<% end %>
 </tr>
