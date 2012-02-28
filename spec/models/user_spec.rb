@@ -42,6 +42,16 @@ describe User do
 		  FactoryGirl.create(:essay, user: @user, created_at: 1.hour.ago)
 	  end
 
+	  describe "status" do
+		  let(:unfollowed_post) do
+			  FactoryGirl.create(:essay, user: FactoryGirl.create(:user))
+		  end
+
+		  its(:feed) { should include(newer_essay) }
+		  its(:feed) { should include(older_essay) }
+		  its(:feed) { should_not include(unfollowed_post) }
+	  end
+
 	  it "should have the right essays in the right order" do
 		  @user.essays.should == [newer_essay, older_essay]
 	  end
